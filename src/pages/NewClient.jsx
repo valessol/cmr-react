@@ -16,7 +16,7 @@ export const action = async ({ request }) => {
   // --1
   // const datos = new FormData()
   // datos.append('nombre', 'Juan')
-  // console.log(datos o datos.get()?)
+  // console.log(datos)
   //--2
   const datos = Object.fromEntries(formData);
   console.log(datos);

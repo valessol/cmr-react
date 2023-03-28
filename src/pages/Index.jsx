@@ -2,10 +2,10 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import Table from "../components/Table/Table";
 import { columns } from "../constants/clientsTableColumns";
-import { clientes } from "../mock-data/clients-mock";
+import { getClients } from "../data/clients";
 
 export const loader = () => {
-  return clientes;
+  return getClients();
 };
 
 const Index = () => {
@@ -18,7 +18,7 @@ const Index = () => {
       {clients.length ? (
         <Table data={clients} columns={columns} />
       ) : (
-        <p classname="text-center mt-10">No hay clientes Cargados</p>
+        <p className="text-center mt-10">No hay clientes Cargados</p>
       )}
     </>
   );
