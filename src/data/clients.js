@@ -43,3 +43,14 @@ export const putClient = async (client, id) => {
     console.log(err);
   }
 };
+
+export const deleteClient = async (id) => {
+  try {
+    const res = await fetch(`${url}/${id}`, {
+      method: "DELETE",
+    });
+    await res.json();
+  } catch (err) {
+    console.log(err);
+  }
+};

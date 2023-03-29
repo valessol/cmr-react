@@ -1,8 +1,23 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Form, redirect } from "react-router-dom";
+import { deleteClient } from "../../data/clients";
+
+export const action = async ({ params }) => {
+  const id = params.id;
+
+  await deleteClient(id);
+
+  return redirect("/");
+};
 
 const Table = ({ data, columns }) => {
   const navigate = useNavigate();
+
+  const handleSubmitFormAction = (e) => {
+    if (!confirm("¿Deseas eliminar este registro?")) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <>
@@ -46,12 +61,18 @@ const Table = ({ data, columns }) => {
                   >
                     Editar
                   </button>
-                  <button
-                    type="button"
-                    className="text-red-600 hover:text-red-700 uppercase font-bold text-xs"
+                  <Form
+                    method="post"
+                    action={`/clientes/${item.id}/eliminar`}
+                    onSubmit={handleSubmitFormAction}
                   >
-                    Eliminar
-                  </button>
+                    <button
+                      type="submit"
+                      className="text-red-600 hover:text-red-700 uppercase font-bold text-xs"
+                    >
+                      Eliminar
+                    </button>
+                  </Form>
                 </td>
               </tr>
             ))}

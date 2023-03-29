@@ -3,11 +3,12 @@ import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import Layout from "../components/Layout/Layout";
 import Index, { loader as clientsLoader } from "../pages/Index";
 import NewClient, { action as newClientAction } from "../pages/NewClient";
+import { action as deleteClientAction } from "../components/Table/Table";
 import UpdateClient, {
   loader as updateClientLoader,
   action as updateClientAction,
 } from "../pages/UpdateClient";
-// createBrowserRouter es una función que permite definir un router por medio de un objeto
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
         loader: updateClientLoader,
         action: updateClientAction,
         errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "/clientes/:id/eliminar",
+        action: deleteClientAction,
       },
     ],
   },
