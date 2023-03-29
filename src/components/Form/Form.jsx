@@ -1,4 +1,4 @@
-const Form = ({ onSubmit, submitText }) => {
+const Form = ({ client, onSubmit, submitText }) => {
   const formConfig = [
     {
       label: "Nombre",
@@ -48,6 +48,7 @@ const Form = ({ onSubmit, submitText }) => {
                 className="mt-2 block w-full p-3 bg-gray-50 h-40 align-self"
                 placeholder={placeholder}
                 name={id}
+                defaultValue={client && client[id]}
               />
             ) : (
               <input
@@ -56,6 +57,7 @@ const Form = ({ onSubmit, submitText }) => {
                 className="mt-2 block w-full p-3 bg-gray-50"
                 placeholder={placeholder}
                 name={id}
+                defaultValue={client && client[id]}
               />
             )}
           </div>

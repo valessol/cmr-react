@@ -1,13 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Table = ({ data, columns }) => {
-  const getDataTableFormatted = () => {
-    return [
-      {
-        label: "Email: ",
-      },
-    ];
-  };
+  const navigate = useNavigate();
+
   return (
     <>
       {data.length ? (
@@ -46,6 +42,7 @@ const Table = ({ data, columns }) => {
                   <button
                     type="button"
                     className="text-blue-600 hover:text-blue-700 uppercase font-bold text-xs"
+                    onClick={() => navigate(`/clientes/${item.id}/editar`)}
                   >
                     Editar
                   </button>
