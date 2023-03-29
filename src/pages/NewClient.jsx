@@ -3,28 +3,25 @@ import {
   useNavigate,
   Form as ReactRouterForm,
   useActionData,
+  redirect,
 } from "react-router-dom";
 import Error from "../components/Error/Error";
 import Form from "../components/Form/Form";
+import { postClient } from "../data/clients";
 import { validateFormData } from "../helpers/formValidations";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
-  //console.log({...formData})
-
-  // Formas de acceder al objeto formData:
-  // --1
-  // const datos = new FormData()
-  // datos.append('nombre', 'Juan')
-  // console.log(datos)
-  //--2
   const datos = Object.fromEntries(formData);
-  console.log(datos);
 
   // Validaciones
   const errors = validateFormData(datos);
 
-  return errors;
+  if (errors.length) return errors;
+
+  await postClient(datos);
+
+  return redirect("/");
 };
 
 const NewClient = () => {
